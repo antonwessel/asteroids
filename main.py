@@ -1,9 +1,12 @@
 import pygame
 from constants import *
+from player import Player
 
 
 def main():
     pygame.init()
+
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     # surface object
     screen = pygame.display.set_mode(
@@ -21,6 +24,8 @@ def main():
 
         # background color
         screen.fill("black")
+
+        player.draw(screen)
 
         # refresh the screen
         pygame.display.flip()
