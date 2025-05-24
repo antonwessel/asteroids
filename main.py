@@ -25,6 +25,8 @@ def main():
         # background color
         screen.fill("black")
 
+        player.update(dt)
+
         player.draw(screen)
 
         # refresh the screen
