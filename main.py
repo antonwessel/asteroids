@@ -6,9 +6,14 @@ from player import Player
 def main():
     pygame.init()
 
+    # groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
-    # surface object
+    # game window
     screen = pygame.display.set_mode(
         (SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -17,17 +22,19 @@ def main():
     # delta time
     dt = 0
 
-    while True:  # game loop
+    # game loop
+    while True:
         for event in pygame.event.get():  # gets all user inputs or events happening
             if event.type == pygame.QUIT:
                 return  # close game
 
+        updatable.update(dt)
+
         # background color
         screen.fill("black")
 
-        player.update(dt)
-
-        player.draw(screen)
+        for obj in drawable:
+            obj.draw(screen)
 
         # refresh the screen
         pygame.display.flip()
